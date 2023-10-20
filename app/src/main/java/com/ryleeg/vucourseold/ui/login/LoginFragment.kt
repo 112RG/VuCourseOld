@@ -7,15 +7,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.google.android.material.textfield.TextInputEditText
 import com.ryleeg.vucourseold.R
 import com.ryleeg.vucourseold.databinding.FragmentLoginBinding
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
-import kotlin.math.log
 
 class LoginFragment : Fragment() {
     private val viewModel: LoginViewModel by activityViewModels()
@@ -37,10 +32,10 @@ class LoginFragment : Fragment() {
         val userNameInput = root.findViewById<TextInputEditText>(R.id.TextEmailAddress)
         val passwordInput = root.findViewById<TextInputEditText>(R.id.TextPassword)
 
-/*        // Navigate to dashboard if token set and valid
-        if (viewModel.isLoggedIn()){
-            root.findNavController().navigate(R.id.navigation_dashboard)
-        }*/
+        /*        // Navigate to dashboard if token set and valid
+                if (viewModel.isLoggedIn()){
+                    root.findNavController().navigate(R.id.navigation_dashboard)
+                }*/
 
         loginButton.setOnClickListener {
             this.context?.let { it1 ->
@@ -50,8 +45,8 @@ class LoginFragment : Fragment() {
                         userNameInput.text.toString(),
                         passwordInput.text.toString()
                     )
-                    if(login) {
-                        root.findNavController().navigate(R.id.navigation_dashboard)
+                    if (login) {
+                        root.findNavController().navigate(R.id.navigation_courses)
                     }
                 }
             }
