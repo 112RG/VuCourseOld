@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.viewModelScope
@@ -29,11 +28,7 @@ class CourseFragment : Fragment() {
 
         _binding = FragmentCourseBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        val textView: TextView = binding.textCourse
-        viewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+        
         val recyclerView = root.findViewById<RecyclerView>(R.id.recycler_view)
 
         recyclerView.layoutManager = LinearLayoutManager(this.context)

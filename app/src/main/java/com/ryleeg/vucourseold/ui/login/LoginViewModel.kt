@@ -4,13 +4,13 @@ import android.content.Context
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavController
 import com.ryleeg.vucourseold.PreferencesManager
+import com.ryleeg.vucourseold.R
 import com.ryleeg.vucourseold.data.LoginBody
 import com.ryleeg.vucourseold.data.VuApi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Inject
 
 @HiltViewModel
@@ -32,12 +32,19 @@ class LoginViewModel @Inject constructor(
         context: Context,
         username: String,
         password: String,
+        navController: NavController,
     ): Boolean {
-
         viewModelScope.launch {
             try {
                 val loginReq = vuApi.login(LoginBody(username, password))
                 preferencesManager.saveData("token", loginReq.token)
+                Toast.makeText(
+                    context,
+                    "Login Successful",
+                    Toast.LENGTH_SHORT
+                )
+                    .show()
+                navController.navigate(R.id.navigation_courses)
             } catch (ex: Exception) {
                 Toast.makeText(
                     context,
@@ -45,7 +52,6 @@ class LoginViewModel @Inject constructor(
                     Toast.LENGTH_SHORT
                 )
                     .show()
-
             }
         }
         return preferencesManager.getData("token", "default") != "default"

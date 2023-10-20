@@ -40,14 +40,23 @@ class LoginFragment : Fragment() {
         loginButton.setOnClickListener {
             this.context?.let { it1 ->
                 run {
-                    val login = viewModel.login(
+                    /*                  val login =
+                                      if (login) {
+                                          Toast.makeText(
+                                              context,
+                                              "Login Successful",
+                                              Toast.LENGTH_SHORT
+                                          )
+                                              .show()
+                                          root.findNavController().navigate(R.id.navigation_courses)
+                                      }*/
+
+                    viewModel.login(
                         it1,
                         userNameInput.text.toString(),
-                        passwordInput.text.toString()
+                        passwordInput.text.toString(),
+                        root.findNavController()
                     )
-                    if (login) {
-                        root.findNavController().navigate(R.id.navigation_courses)
-                    }
                 }
             }
         }
