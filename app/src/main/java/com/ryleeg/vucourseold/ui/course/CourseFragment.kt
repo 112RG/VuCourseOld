@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.viewModelScope
@@ -28,19 +29,32 @@ class CourseFragment : Fragment() {
 
         _binding = FragmentCourseBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        
+
+
         val recyclerView = root.findViewById<RecyclerView>(R.id.recycler_view)
 
         recyclerView.layoutManager = LinearLayoutManager(this.context)
 
+
         // Initialize the adapter with an empty list
         val adapter = CourseAdapter(emptyList())
         recyclerView.adapter = adapter
+        root.findViewById<SearchView>(R.id.search_view)
+            .setOnQueryTextListener(object :
+                SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    adapter.filter.filter(query)
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    adapter.filter.filter(newText)
+                    return false
+                }
+            })
         viewModel.viewModelScope.launch {
             val courses = viewModel.getCourses()
-            recyclerView.adapter = CourseAdapter(
-                data = courses
-            )
+            adapter.addData(courses)
         }
         return root
     }

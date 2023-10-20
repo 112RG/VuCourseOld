@@ -1,6 +1,21 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.VuCourseOld" parent="Theme.Material3.Light">
+
+    </style>
+
+
+    <style name="SearchViewStyle" parent="Widget.AppCompat.SearchView">
+        <!-- Gets rid of the search icon -->
+        <!--        <item name="searchIcon">@null</item>-->
+        <!-- Gets rid of the "underline" in the text -->
+        <item name="queryBackground">@color/material_dynamic_primary0</item>
+        <item name="background">@color/material_dynamic_primary0</item>
+        <!-- Gets rid of the search icon when the SearchView is expanded -->
+        <item name="searchHintIcon">@null</item>
+        <!-- The hint text that appears when the user has not typed anything -->
+
+        <!--        <item name="closeIcon">@drawable/ic_clo</item>-->
 
     </style>
 </resources>
