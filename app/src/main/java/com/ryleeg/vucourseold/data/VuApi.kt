@@ -27,7 +27,6 @@ interface VuApi {
 
 data class LoginBody(val name: String, val password: String)
 
-
 class AuthInterceptor(private val preferencesManager: PreferencesManager) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
@@ -37,8 +36,7 @@ class AuthInterceptor(private val preferencesManager: PreferencesManager) : Inte
             // If token has been saved, add it to the request
             requestBuilder.addHeader("Authorization", "Bearer $token")
         }
-
-
+        
         return chain.proceed(requestBuilder.build())
     }
 }

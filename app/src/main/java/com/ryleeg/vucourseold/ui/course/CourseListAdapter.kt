@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ryleeg.vucourseold.R
@@ -22,14 +21,10 @@ class CourseListAdapter(private var dataList: List<Course>) :
 
         fun bind(property: Course) {
             val title = view.findViewById<TextView>(R.id.tvTitle)
-            val imageView = view.findViewById<ImageView>(R.id.imageView)
             val description = view.findViewById<TextView>(R.id.tvDescription)
 
             title.text = property.name
             description.text = property.description
-
-            // Glide.with(view.context).load(property.image).centerCrop().into(imageView)
-
         }
     }
 

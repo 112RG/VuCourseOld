@@ -35,9 +35,9 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         // assign and set bottom nav controller
-        val bottom_nav = findViewById<BottomNavigationView>(R.id.nav_view)
+        val bottomNav = findViewById<BottomNavigationView>(R.id.nav_view)
 
-        bottom_nav.setupWithNavController(navController)
+        bottomNav.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id == R.id.navigation_login) {
                 try {
@@ -45,11 +45,11 @@ class MainActivity : AppCompatActivity() {
                 } catch (e: Exception) {
                     println(e)
                 }
-                bottom_nav.visibility =
+                bottomNav.visibility =
                     View.GONE // Hide the bottom navigation for the LoginFragment
             } else {
 
-                bottom_nav.visibility =
+                bottomNav.visibility =
                     View.VISIBLE // Show the bottom navigation for other fragments
             }
         }

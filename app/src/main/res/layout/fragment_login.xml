@@ -5,17 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.login.LoginFragment">
-
-
+    
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/your_image_id"
+            android:id="@+id/vuLogo"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginTop="44dp"
+            android:contentDescription="Logo of VU"
             android:src="@drawable/vu_logo_stacked"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -44,6 +44,7 @@
                     android:id="@+id/TextUsername"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:contentDescription="Username Field"
                     android:ems="10"
                     android:hint="Username"
                     android:inputType="textPersonName" />
@@ -59,6 +60,7 @@
                     android:id="@+id/TextPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:contentDescription="Password Field"
                     android:ems="10"
                     android:hint="Password"
                     android:inputType="textPassword" />
@@ -68,9 +70,8 @@
                 android:id="@+id/loginButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:contentDescription="Login Submit Button"
                 android:text="Login" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

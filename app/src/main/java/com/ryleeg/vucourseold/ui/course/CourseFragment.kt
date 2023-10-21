@@ -28,13 +28,11 @@ class CourseFragment : Fragment() {
     ): View {
 
         _binding = FragmentCourseBinding.inflate(inflater, container, false)
+
         val root: View = binding.root
-
-
         val recyclerView = root.findViewById<RecyclerView>(R.id.recycler_view)
 
         recyclerView.layoutManager = LinearLayoutManager(this.context)
-
 
         // Initialize the adapter with an empty list
         val adapter = CourseListAdapter(emptyList())
@@ -58,8 +56,7 @@ class CourseFragment : Fragment() {
         }
         return root
     }
-
-
+    
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

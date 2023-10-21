@@ -16,9 +16,7 @@ import com.ryleeg.vucourseold.databinding.FragmentLoginBinding
 class LoginFragment : Fragment() {
     private val viewModel: LoginViewModel by activityViewModels()
     private var _binding: FragmentLoginBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -26,7 +24,6 @@ class LoginFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         val root: View = binding.root
         val loginButton = root.findViewById<Button>(R.id.loginButton)

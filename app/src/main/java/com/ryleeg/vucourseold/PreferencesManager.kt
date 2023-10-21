@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 
 class PreferencesManager(context: Context) {
     private val sharedPreferences: SharedPreferences =
-        context.getSharedPreferences("4", Context.MODE_PRIVATE)
+        context.getSharedPreferences("vuCourse", Context.MODE_PRIVATE)
 
     fun saveData(key: String, value: String) {
         val editor = sharedPreferences.edit()
