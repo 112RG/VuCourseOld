@@ -14,11 +14,11 @@ import com.ryleeg.vucourseold.R
 import com.ryleeg.vucourseold.data.model.Course
 import java.util.Locale
 
-class CourseAdapter(private var dataList: List<Course>) :
-    RecyclerView.Adapter<CourseAdapter.MyViewHolder>(), Filterable {
+class CourseListAdapter(private var dataList: List<Course>) :
+    RecyclerView.Adapter<CourseListAdapter.CourseListViewHolder>(), Filterable {
     var dataFiltered: List<Course> = ArrayList()
 
-    class MyViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+    class CourseListViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(property: Course) {
             val title = view.findViewById<TextView>(R.id.tvTitle)
@@ -39,16 +39,16 @@ class CourseAdapter(private var dataList: List<Course>) :
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CourseListViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
-        return MyViewHolder(v)
+        return CourseListViewHolder(v)
     }
 
     override fun getItemCount(): Int {
         return dataFiltered.size
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CourseListViewHolder, position: Int) {
         holder.bind(dataFiltered[position])
     }
 

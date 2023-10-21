@@ -30,7 +30,7 @@ class LoginFragment : Fragment() {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
         val root: View = binding.root
         val loginButton = root.findViewById<Button>(R.id.loginButton)
-        val userNameInput = root.findViewById<TextInputEditText>(R.id.TextEmailAddress)
+        val userNameInput = root.findViewById<TextInputEditText>(R.id.TextUsername)
         val passwordInput = root.findViewById<TextInputEditText>(R.id.TextPassword)
 
         viewModel.observeLoginStatus(this) { loginSuccessful ->

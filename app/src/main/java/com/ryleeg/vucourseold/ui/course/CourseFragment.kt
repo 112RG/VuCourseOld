@@ -37,7 +37,7 @@ class CourseFragment : Fragment() {
 
 
         // Initialize the adapter with an empty list
-        val adapter = CourseAdapter(emptyList())
+        val adapter = CourseListAdapter(emptyList())
         recyclerView.adapter = adapter
         root.findViewById<SearchView>(R.id.search_view)
             .setOnQueryTextListener(object :
