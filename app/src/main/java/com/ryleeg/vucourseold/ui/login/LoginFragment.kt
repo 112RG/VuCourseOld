@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
@@ -32,30 +33,21 @@ class LoginFragment : Fragment() {
         val userNameInput = root.findViewById<TextInputEditText>(R.id.TextEmailAddress)
         val passwordInput = root.findViewById<TextInputEditText>(R.id.TextPassword)
 
-        /*        // Navigate to dashboard if token set and valid
-                if (viewModel.isLoggedIn()){
-                    root.findNavController().navigate(R.id.navigation_dashboard)
-                }*/
+        viewModel.observeLoginStatus(this) { loginSuccessful ->
+            if (loginSuccessful) {
+                Toast.makeText(context, "Login Successful", Toast.LENGTH_SHORT).show()
+                root.findNavController().navigate(R.id.navigation_courses)
+            } else {
+                Toast.makeText(context, "An error occurred", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         loginButton.setOnClickListener {
             this.context?.let { it1 ->
                 run {
-                    /*                  val login =
-                                      if (login) {
-                                          Toast.makeText(
-                                              context,
-                                              "Login Successful",
-                                              Toast.LENGTH_SHORT
-                                          )
-                                              .show()
-                                          root.findNavController().navigate(R.id.navigation_courses)
-                                      }*/
-
                     viewModel.login(
-                        it1,
                         userNameInput.text.toString(),
                         passwordInput.text.toString(),
-                        root.findNavController()
                     )
                 }
             }

@@ -1,12 +1,11 @@
 package com.ryleeg.vucourseold.ui.login
 
-import android.content.Context
-import android.widget.Toast
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavController
 import com.ryleeg.vucourseold.PreferencesManager
-import com.ryleeg.vucourseold.R
 import com.ryleeg.vucourseold.data.LoginBody
 import com.ryleeg.vucourseold.data.VuApi
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,42 +17,25 @@ class LoginViewModel @Inject constructor(
     private val vuApi: VuApi,
     private val preferencesManager: PreferencesManager
 ) : ViewModel() {
-
-    fun isLoggedIn(): Boolean {
-        return if (preferencesManager.getData("token", "default") == "default") {
-            false
-        } else {
-            println("Has token")
-            true
-        }
-    }
-
+    private val loginStatus = MutableLiveData<Boolean>()
     fun login(
-        context: Context,
         username: String,
         password: String,
-        navController: NavController,
-    ): Boolean {
+    ) {
         viewModelScope.launch {
             try {
                 val loginReq = vuApi.login(LoginBody(username, password))
+                // Will always be true if login passes
                 preferencesManager.saveData("token", loginReq.token)
-                Toast.makeText(
-                    context,
-                    "Login Successful",
-                    Toast.LENGTH_SHORT
-                )
-                    .show()
-                navController.navigate(R.id.navigation_courses)
+                loginStatus.value = preferencesManager.getData("token", "default") != "default"
             } catch (ex: Exception) {
-                Toast.makeText(
-                    context,
-                    "An error occurred: ${ex.message}",
-                    Toast.LENGTH_SHORT
-                )
-                    .show()
+                loginStatus.value = false
             }
         }
-        return preferencesManager.getData("token", "default") != "default"
+    }
+
+    // Function to observe the login status from your fragment
+    fun observeLoginStatus(owner: LifecycleOwner, observer: Observer<Boolean>) {
+        loginStatus.observe(owner, observer)
     }
 }
