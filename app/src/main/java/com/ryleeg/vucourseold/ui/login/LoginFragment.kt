@@ -16,7 +16,7 @@ import com.ryleeg.vucourseold.databinding.FragmentLoginBinding
 class LoginFragment : Fragment() {
     private val viewModel: LoginViewModel by activityViewModels()
     private var _binding: FragmentLoginBinding? = null
-    
+
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -33,7 +33,7 @@ class LoginFragment : Fragment() {
         viewModel.observeLoginStatus(this) { loginSuccessful ->
             if (loginSuccessful) {
                 Toast.makeText(context, "Login Successful", Toast.LENGTH_SHORT).show()
-                root.findNavController().navigate(R.id.navigation_courses)
+                root.findNavController().navigate(R.id.navigation_dashboard)
             } else {
                 Toast.makeText(context, "An error occurred", Toast.LENGTH_SHORT).show()
             }

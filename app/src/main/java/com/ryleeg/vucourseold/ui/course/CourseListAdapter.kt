@@ -52,7 +52,7 @@ class CourseListAdapter(private var dataList: List<Course>) :
 
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val charString = constraint?.toString()?.lowercase(Locale.getDefault()) ?: ""
-                if (charString.isEmpty()) dataFiltered = dataList else {
+                dataFiltered = if (charString.isEmpty()) dataList else {
                     val filteredList = ArrayList<Course>()
                     dataList
                         .filter {
@@ -60,7 +60,7 @@ class CourseListAdapter(private var dataList: List<Course>) :
                                     (it.name.lowercase(Locale.getDefault()).contains(charString))
                         }
                         .forEach { filteredList.add(it) }
-                    dataFiltered = filteredList
+                    filteredList
                 }
                 Log.e("performFiltering: t1: ", dataFiltered.size.toString())
 
@@ -68,7 +68,6 @@ class CourseListAdapter(private var dataList: List<Course>) :
             }
 
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-
                 dataFiltered = if (results?.values == null)
                     ArrayList()
                 else
@@ -76,7 +75,6 @@ class CourseListAdapter(private var dataList: List<Course>) :
                 notifyDataSetChanged()
 
                 Log.e("performFiltering: t2 ", "called" + dataFiltered.size)
-
             }
         }
     }

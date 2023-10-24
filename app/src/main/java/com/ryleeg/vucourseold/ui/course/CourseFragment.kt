@@ -36,6 +36,7 @@ class CourseFragment : Fragment() {
 
         // Initialize the adapter with an empty list
         val adapter = CourseListAdapter(emptyList())
+
         recyclerView.adapter = adapter
         root.findViewById<SearchView>(R.id.search_view)
             .setOnQueryTextListener(object :
@@ -56,7 +57,7 @@ class CourseFragment : Fragment() {
         }
         return root
     }
-    
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
